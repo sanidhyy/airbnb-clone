@@ -1,3 +1,5 @@
+import React from "react";
+import { useRouter } from "expo-router";
 import {
   View,
   Text,
@@ -5,15 +7,52 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { useOAuth } from "@clerk/clerk-expo";
 
 import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
+
+enum Strategy {
+  Google = "oauth_google",
+  Apple = "oauth_apple",
+  Facebook = "oauth_facebook",
+  Github = "oauth_github",
+}
 
 const Login = () => {
   useWarmUpBrowser();
+
+  const router = useRouter();
+
+  const { startOAuthFlow: appleAuth } = useOAuth({ strategy: "oauth_apple" });
+  const { startOAuthFlow: googleAuth } = useOAuth({ strategy: "oauth_google" });
+  const { startOAuthFlow: githubAuth } = useOAuth({ strategy: "oauth_github" });
+  const { startOAuthFlow: facebookAuth } = useOAuth({
+    strategy: "oauth_facebook",
+  });
+
+  const onSelectAuth = async (strategy: Strategy) => {
+    const selectedAuth = {
+      [Strategy.Google]: googleAuth,
+      [Strategy.Apple]: appleAuth,
+      [Strategy.Facebook]: facebookAuth,
+      [Strategy.Github]: githubAuth,
+    }[strategy];
+
+    try {
+      const { createdSessionId, setActive } = await selectedAuth();
+
+      if (createdSessionId) {
+        setActive!({ session: createdSessionId });
+        router.push("/(tabs)/");
+      }
+    } catch (error: unknown) {
+      console.log(`OAuth: ${error}`);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -45,15 +84,11 @@ const Login = () => {
       </View>
 
       <View style={{ gap: 20 }}>
-        <TouchableOpacity style={styles.btnOutline}>
-          <Ionicons
-            name="call-outline"
-            size={24}
-            style={defaultStyles.btnIcon}
-          />
-          <Text style={styles.btnOutlineText}>Continue with Phone</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btnOutline}>
+        <TouchableOpacity
+          style={styles.btnOutline}
+          onPress={() => onSelectAuth(Strategy.Apple)}
+        >
+          {/* apple */}
           <Ionicons
             name="md-logo-apple"
             size={24}
@@ -61,7 +96,12 @@ const Login = () => {
           />
           <Text style={styles.btnOutlineText}>Continue with Apple</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnOutline}>
+
+        {/* google */}
+        <TouchableOpacity
+          style={styles.btnOutline}
+          onPress={() => onSelectAuth(Strategy.Google)}
+        >
           <Ionicons
             name="md-logo-google"
             size={24}
@@ -69,13 +109,31 @@ const Login = () => {
           />
           <Text style={styles.btnOutlineText}>Continue with Google</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnOutline}>
+
+        {/* github */}
+        <TouchableOpacity
+          style={styles.btnOutline}
+          onPress={() => onSelectAuth(Strategy.Github)}
+        >
           <Ionicons
             name="md-logo-github"
             size={24}
             style={defaultStyles.btnIcon}
           />
           <Text style={styles.btnOutlineText}>Continue with Github</Text>
+        </TouchableOpacity>
+
+        {/* facebook */}
+        <TouchableOpacity
+          style={styles.btnOutline}
+          onPress={() => onSelectAuth(Strategy.Facebook)}
+        >
+          <Ionicons
+            name="md-logo-facebook"
+            size={24}
+            style={defaultStyles.btnIcon}
+          />
+          <Text style={styles.btnOutlineText}>Continue with Facebook</Text>
         </TouchableOpacity>
       </View>
     </View>
