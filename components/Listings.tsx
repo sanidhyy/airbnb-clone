@@ -1,7 +1,16 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 
-const Listings = () => {
+interface ListingsProps {
+  listings: any[];
+  category: string;
+}
+
+const Listings = ({ listings, category }: ListingsProps) => {
+  useEffect(() => {
+    console.log("RELOAD LISTINGS", listings.length);
+  }, [category]);
+
   return (
     <View>
       <Text>Listings</Text>
