@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
@@ -8,10 +8,15 @@ import Animated, {
   SlideInDown,
 } from "react-native-reanimated";
 import { useRouter } from "expo-router";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
 import { defaultStyles } from "@/constants/Styles";
+import { places } from "@/assets/data/places";
 import Colors from "@/constants/Colors";
 
 const AnimatedTouchableOpacity =
@@ -44,11 +49,53 @@ const Bookings = () => {
         )}
 
         {openCard === 0 && (
-          <Animated.View>
+          <>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               Where to?
             </Animated.Text>
-          </Animated.View>
+            <Animated.View style={styles.cardBody}>
+              <View style={styles.searchSection}>
+                <Ionicons
+                  name="ios-search"
+                  size={20}
+                  color="black"
+                  style={styles.searchIcon}
+                />
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Search destination"
+                  placeholderTextColor={Colors.grey}
+                />
+              </View>
+
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ gap: 25 }}
+              >
+                {places.map((place, i) => (
+                  <TouchableOpacity key={i} onPress={() => setSelectedPlace(i)}>
+                    <Image
+                      source={place.img}
+                      style={
+                        selectedPlace === i
+                          ? styles.placeSelected
+                          : styles.place
+                      }
+                    />
+                    <Text
+                      style={{
+                        fontFamily: selectedPlace === i ? "mon-sb" : "mon",
+                        paddingTop: 6,
+                      }}
+                    >
+                      {place.title}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </Animated.View>
+          </>
         )}
       </View>
 
@@ -67,7 +114,7 @@ const Bookings = () => {
         )}
 
         {openCard === 1 && (
-          <Animated.View>
+          <Animated.View style={styles.cardBody}>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               When's your trip?
             </Animated.Text>
@@ -90,7 +137,7 @@ const Bookings = () => {
         )}
 
         {openCard === 2 && (
-          <Animated.View>
+          <Animated.View style={styles.cardBody}>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               Who's coming?
             </Animated.Text>
@@ -180,6 +227,41 @@ const styles = StyleSheet.create({
     fontFamily: "mon-b",
     fontSize: 24,
     padding: 20,
+  },
+  cardBody: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+  searchSection: {
+    height: 50,
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#ABABAB",
+    borderRadius: 8,
+    backgroundColor: "#fff",
+    alignContent: "center",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  inputField: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "#fff",
+  },
+  searchIcon: {
+    padding: 10,
+  },
+  placeSelected: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: Colors.grey,
+  },
+  place: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
   },
 });
 
