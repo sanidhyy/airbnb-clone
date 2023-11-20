@@ -10,10 +10,12 @@ import {
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { defaultStyles } from "@/constants/Styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Colors from "@/constants/Colors";
 import { TextInput } from "react-native-gesture-handler";
+import * as ImagePicker from "expo-image-picker";
+
+import { defaultStyles } from "@/constants/Styles";
+import Colors from "@/constants/Colors";
 
 const Profile = () => {
   const { signOut, isSignedIn } = useAuth();
@@ -45,7 +47,21 @@ const Profile = () => {
     }
   };
 
-  const onCaptureImage = async () => {};
+  const onCaptureImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 0.75,
+      base64: true,
+    });
+
+    if (!result.canceled) {
+      const base64 = `data:image/png;base64,${result.assets[0].base64}`;
+      user?.setProfileImage({
+        file: base64,
+      });
+    }
+  };
 
   return (
     <SafeAreaView style={defaultStyles.container}>
