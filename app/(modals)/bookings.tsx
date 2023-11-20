@@ -19,7 +19,6 @@ import DatePicker from "react-native-modern-datepicker";
 import { defaultStyles } from "@/constants/Styles";
 import { places } from "@/assets/data/places";
 import Colors from "@/constants/Colors";
-import { getItemAsync } from "expo-secure-store";
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
