@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -7,10 +8,11 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { defaultStyles } from "@/constants/Styles";
 import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
+
+import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 
 interface ListingsProps {
@@ -33,7 +35,11 @@ const Listings = ({ listings: items, category }: ListingsProps) => {
   const renderRow: ListRenderItem<any> = ({ item }) => (
     <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity>
-        <View style={styles.listing}>
+        <Animated.View
+          style={styles.listing}
+          entering={FadeInRight}
+          exiting={FadeOutLeft}
+        >
           <Image source={{ uri: item.medium_url }} style={styles.image} />
           <TouchableOpacity
             style={{
@@ -73,7 +79,7 @@ const Listings = ({ listings: items, category }: ListingsProps) => {
             <Text style={{ fontFamily: "mon-sb" }}>/</Text>
             <Text style={{ fontFamily: "mon" }}>night</Text>
           </View>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
     </Link>
   );
