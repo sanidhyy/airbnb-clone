@@ -27,7 +27,10 @@ const Bookings = () => {
   const router = useRouter();
   const [openCard, setOpenCard] = useState(0);
   const [selectedPlace, setSelectedPlace] = useState(0);
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date();
+  const todayISO = new Date().toISOString().split("T")[0];
+  const maxDate = new Date(today.setMonth(today.getMonth() + 1));
+  const maxDateISO = maxDate.toISOString().split("T")[0];
 
   const onClearAll = () => {
     setSelectedPlace(0);
@@ -122,8 +125,10 @@ const Bookings = () => {
             </Animated.Text>
             <Animated.View style={styles.cardBody}>
               <DatePicker
-                current={today}
-                selected={today}
+                current={todayISO}
+                selected={todayISO}
+                minimumDate={todayISO}
+                maximumDate={maxDateISO}
                 mode="calendar"
                 options={{
                   defaultFont: "mon",
@@ -152,11 +157,12 @@ const Bookings = () => {
         )}
 
         {openCard === 2 && (
-          <Animated.View style={styles.cardBody}>
+          <>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               Who's coming?
             </Animated.Text>
-          </Animated.View>
+            <Animated.View style={styles.cardBody}></Animated.View>
+          </>
         )}
       </View>
 
