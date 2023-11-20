@@ -1,29 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
-  FlatList,
+  StyleSheet,
   ListRenderItem,
   TouchableOpacity,
-  StyleSheet,
-  Image,
 } from "react-native";
-import { Link } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
-
 import { defaultStyles } from "@/constants/Styles";
-import Colors from "@/constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
+import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
+import { useEffect, useRef, useState } from "react";
+import {
+  BottomSheetFlatList,
+  BottomSheetFlatListMethods,
+} from "@gorhom/bottom-sheet";
 
 interface ListingsProps {
   listings: any[];
+  refresh: number;
   category: string;
 }
 
-const Listings = ({ listings: items, category }: ListingsProps) => {
-  const [loading, setLoading] = useState(false);
-  const listRef = useRef<FlatList>(null);
+const Listings = ({ listings: items, refresh, category }: ListingsProps) => {
+  const listRef = useRef<BottomSheetFlatListMethods>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
+  // Update the view to scroll the list back top
+  useEffect(() => {
+    if (refresh) {
+      scrollListTop();
+    }
+  }, [refresh]);
+
+  const scrollListTop = () => {
+    listRef.current?.scrollToOffset({ offset: 0, animated: true });
+  };
+
+  // Use for "updating" the views data after category changed
   useEffect(() => {
     setLoading(true);
 
@@ -32,6 +45,7 @@ const Listings = ({ listings: items, category }: ListingsProps) => {
     }, 200);
   }, [category]);
 
+  // Render one listing row for the FlatList
   const renderRow: ListRenderItem<any> = ({ item }) => (
     <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity>
@@ -40,43 +54,31 @@ const Listings = ({ listings: items, category }: ListingsProps) => {
           entering={FadeInRight}
           exiting={FadeOutLeft}
         >
-          <Image source={{ uri: item.medium_url }} style={styles.image} />
+          <Animated.Image
+            source={{ uri: item.medium_url }}
+            style={styles.image}
+          />
           <TouchableOpacity
-            style={{
-              position: "absolute",
-              right: 30,
-              top: 30,
-              backgroundColor: Colors.primary,
-              padding: 10,
-              borderRadius: 1000,
-              opacity: 0.85,
-            }}
+            style={{ position: "absolute", right: 30, top: 30 }}
           >
-            <Ionicons name="heart-outline" size={24} color="#fff" />
+            <Ionicons name="heart-outline" size={24} color="#000" />
           </TouchableOpacity>
-
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 13, fontFamily: "mon-sb" }}>
-              {item.name.length < 45
-                ? item.name
-                : item.name.substr(0, 35) + "..."}
+            <Text style={{ fontSize: 16, fontFamily: "mon-sb" }}>
+              {item.name}
             </Text>
-
             <View style={{ flexDirection: "row", gap: 4 }}>
-              <Ionicons name="star" size={16} color={Colors.primary} />
-              <Text style={{ fontFamily: "mon-sb", color: Colors.primary }}>
-                {(item.review_scores_rating / 20).toFixed(2)}
+              <Ionicons name="star" size={16} />
+              <Text style={{ fontFamily: "mon-sb" }}>
+                {item.review_scores_rating / 20}
               </Text>
             </View>
           </View>
-
           <Text style={{ fontFamily: "mon" }}>{item.room_type}</Text>
-
-          <View style={{ flexDirection: "row", gap: 2 }}>
-            <Text style={{ fontFamily: "mon-sb" }}>${item.price}</Text>
-            <Text style={{ fontFamily: "mon-sb" }}>/</Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <Text style={{ fontFamily: "mon-sb" }}>€ {item.price}</Text>
             <Text style={{ fontFamily: "mon" }}>night</Text>
           </View>
         </Animated.View>
@@ -86,10 +88,13 @@ const Listings = ({ listings: items, category }: ListingsProps) => {
 
   return (
     <View style={defaultStyles.container}>
-      <FlatList
+      <BottomSheetFlatList
         renderItem={renderRow}
+        data={loading ? [] : items}
         ref={listRef}
-        data={!loading ? items : []}
+        ListHeaderComponent={
+          <Text style={styles.info}>{items.length} homes</Text>
+        }
       />
     </View>
   );
@@ -105,6 +110,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 300,
     borderRadius: 10,
+  },
+  info: {
+    textAlign: "center",
+    fontFamily: "mon-sb",
+    fontSize: 16,
+    marginTop: 4,
   },
 });
 
