@@ -19,14 +19,40 @@ import DatePicker from "react-native-modern-datepicker";
 import { defaultStyles } from "@/constants/Styles";
 import { places } from "@/assets/data/places";
 import Colors from "@/constants/Colors";
+import { getItemAsync } from "expo-secure-store";
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
+
+const guestsGroups = [
+  {
+    name: "Adults",
+    text: "Ages 13 or above",
+    count: 0,
+  },
+  {
+    name: "Children",
+    text: "Ages 2-12",
+    count: 0,
+  },
+  {
+    name: "Infants",
+    text: "Under 2",
+    count: 0,
+  },
+  {
+    name: "Pets",
+    text: "Pets allowed",
+    count: 0,
+  },
+];
 
 const Bookings = () => {
   const router = useRouter();
   const [openCard, setOpenCard] = useState(0);
   const [selectedPlace, setSelectedPlace] = useState(0);
+  const [groups, setGroups] = useState(guestsGroups);
+
   const today = new Date();
   const todayISO = new Date().toISOString().split("T")[0];
   const maxDate = new Date(today.setMonth(today.getMonth() + 1));
@@ -35,6 +61,7 @@ const Bookings = () => {
   const onClearAll = () => {
     setSelectedPlace(0);
     setOpenCard(0);
+    setGroups(guestsGroups);
   };
 
   return (
@@ -161,7 +188,82 @@ const Bookings = () => {
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               Who's coming?
             </Animated.Text>
-            <Animated.View style={styles.cardBody}></Animated.View>
+            <Animated.View style={styles.cardBody}>
+              {groups.map((group, i) => (
+                <View
+                  key={i}
+                  style={[
+                    styles.guestItem,
+                    i + 1 < groups.length ? styles.itemBorder : null,
+                  ]}
+                >
+                  <View>
+                    <Text style={{ fontFamily: "mon-sb", fontSize: 14 }}>
+                      {group.name}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "mon",
+                        fontSize: 14,
+                        color: Colors.grey,
+                      }}
+                    >
+                      {group.text}
+                    </Text>
+                  </View>
+
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      gap: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => {
+                        const newGroups = [...groups];
+                        newGroups[i].count--;
+                        setGroups(newGroups);
+                      }}
+                      disabled={groups[i].count === 0}
+                      aria-disabled={groups[i].count === 0}
+                    >
+                      <Ionicons
+                        name="remove-circle-outline"
+                        size={26}
+                        color={groups[i].count > 0 ? Colors.grey : "#CDCDCD"}
+                      />
+                    </TouchableOpacity>
+
+                    <Text
+                      style={{
+                        fontFamily: "mon",
+                        fontSize: 16,
+                        minWidth: 18,
+                        textAlign: "center",
+                      }}
+                    >
+                      {group.count}
+                    </Text>
+
+                    <TouchableOpacity
+                      onPress={() => {
+                        const newGroups = [...groups];
+                        newGroups[i].count++;
+                        setGroups(newGroups);
+                      }}
+                    >
+                      <Ionicons
+                        name="add-circle-outline"
+                        size={26}
+                        color={Colors.grey}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))}
+            </Animated.View>
           </>
         )}
       </View>
@@ -283,6 +385,16 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10,
+  },
+  guestItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 16,
+  },
+  itemBorder: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: Colors.grey,
   },
 });
 
