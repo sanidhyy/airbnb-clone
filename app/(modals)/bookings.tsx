@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import DatePicker from "react-native-modern-datepicker";
 
 import { defaultStyles } from "@/constants/Styles";
 import { places } from "@/assets/data/places";
@@ -114,11 +115,12 @@ const Bookings = () => {
         )}
 
         {openCard === 1 && (
-          <Animated.View style={styles.cardBody}>
+          <>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               When's your trip?
             </Animated.Text>
-          </Animated.View>
+            <Animated.View style={styles.cardBody}></Animated.View>
+          </>
         )}
       </View>
 
