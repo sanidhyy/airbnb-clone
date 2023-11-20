@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -5,15 +6,15 @@ import {
   ListRenderItem,
   TouchableOpacity,
 } from "react-native";
-import { defaultStyles } from "@/constants/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
-import { useEffect, useRef, useState } from "react";
 import {
   BottomSheetFlatList,
   BottomSheetFlatListMethods,
 } from "@gorhom/bottom-sheet";
+
+import { defaultStyles } from "@/constants/Styles";
 
 interface ListingsProps {
   listings: any[];

@@ -1,8 +1,9 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useMemo, useRef, useState } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
-import Listings from "@/components/Listings";
 import { Ionicons } from "@expo/vector-icons";
+
+import Listings from "@/components/Listings";
 import Colors from "@/constants/Colors";
 
 interface ListingsBottomSheetProps {
