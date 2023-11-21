@@ -2,7 +2,9 @@
 
 # Airbnb Clone Application using Expo & React Native
 
-![Airbnb Clone Application using Expo & React Native](/.github/images/img_main.png "Airbnb Clone Application using Expo & React Native")
+<p align="center">
+    <img src="/.github/images/img_main.png" alt="Airbnb Clone Application using Expo & React Native" height="700" title="Airbnb Clone Application using Expo & React Native" />
+</p>
 
 [![Ask Me Anything!](https://flat.badgen.net/static/Ask%20me/anything?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy "Ask Me Anything!")
 [![GitHub license](https://flat.badgen.net/github/license/sanidhyy/airbnb-clone?icon=github&color=black&scale=1.01)](https://github.com/sanidhyy/airbnb-clone/blob/main/LICENSE "GitHub license")
@@ -101,13 +103,15 @@ EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ## :camera: Screenshots:
 
-![Modern UI/UX](/.github/images/img1.png "Modern UI/UX")
+<p align="center">
+<img src="/.github/images/img1.png" alt="Modern UI/UX" height="700" title="Modern UI/UX" />
+<img src="/.github/images/img2.png" alt="Global Map View" height="700" title="Global Map View" />
+</p>
 
-![Global Map View](/.github/images/img2.png "Global Map View")
-
-![Clerk Sign In & Sign Up](/.github/images/img3.png "Clerk Sign In & Sign Up")
-
-![Working Custom Filters](/.github/images/img4.png "Working Custom Filters")
+<p align="center">
+<img src="/.github/images/img3.png" alt="Clerk Sign In & Sign Up" height="700" title="Clerk Sign In & Sign Up" />
+<img src="/.github/images/img4.png" alt="Working Custom Filters" height="700" title="Working Custom Filters" />
+</p>
 
 ## :gear: Tech Stack
 
