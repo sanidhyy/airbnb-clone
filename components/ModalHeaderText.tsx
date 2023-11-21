@@ -1,10 +1,14 @@
 import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
 import Colors from "@/constants/Colors";
 
+// Component to display header text with two selectable options
 const ModalHeaderText = () => {
+  // State to track the active option
   const [active, setActive] = useState(0);
+
   return (
     <View
       style={{
@@ -14,6 +18,7 @@ const ModalHeaderText = () => {
         paddingLeft: "25%",
       }}
     >
+      {/* Option: Stays */}
       <TouchableOpacity onPress={() => setActive(0)}>
         <Text
           style={{
@@ -27,6 +32,7 @@ const ModalHeaderText = () => {
         </Text>
       </TouchableOpacity>
 
+      {/* Option: Experience */}
       <TouchableOpacity onPress={() => setActive(1)}>
         <Text
           style={{

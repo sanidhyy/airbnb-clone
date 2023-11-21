@@ -1,3 +1,4 @@
+// Import necessary dependencies and components
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useLayoutEffect } from "react";
 import {
@@ -9,9 +10,6 @@ import {
   TouchableOpacity,
   Share,
 } from "react-native";
-import listingsData from "@/assets/data/airbnb-listings.json";
-import { Ionicons } from "@expo/vector-icons";
-import Colors from "@/constants/Colors";
 import Animated, {
   SlideInDown,
   interpolate,
@@ -19,17 +17,34 @@ import Animated, {
   useAnimatedStyle,
   useScrollViewOffset,
 } from "react-native-reanimated";
+import { Ionicons } from "@expo/vector-icons";
+
+// Import data and style constants
+import listingsData from "@/assets/data/airbnb-listings.json";
+import Colors from "@/constants/Colors";
 import { defaultStyles } from "@/constants/Styles";
 
+// Get the device width
 const { width } = Dimensions.get("window");
+
+// Define the image height constant
 const IMG_HEIGHT = 300;
 
+// DetailsPage component
 const DetailsPage = () => {
+  // Extract parameters from navigation
   const { id } = useLocalSearchParams();
+
+  // Find the listing data based on the id
   const listing = (listingsData as any[]).find((item) => item.id === id);
+
+  // Access navigation functions
   const navigation = useNavigation();
+
+  // Create an animated reference for the ScrollView
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
 
+  // Function to share the listing
   const shareListing = async () => {
     try {
       await Share.share({
@@ -41,16 +56,20 @@ const DetailsPage = () => {
     }
   };
 
+  // Use layout effect to set navigation options
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "",
       headerTransparent: true,
 
+      // Define the animated header background
       headerBackground: () => (
         <Animated.View
           style={[headerAnimatedStyle, styles.header]}
         ></Animated.View>
       ),
+
+      // Define the header right buttons
       headerRight: () => (
         <View style={styles.bar}>
           <TouchableOpacity style={styles.roundButton} onPress={shareListing}>
@@ -63,6 +82,8 @@ const DetailsPage = () => {
           </TouchableOpacity>
         </View>
       ),
+
+      // Define the header left button
       headerLeft: () => (
         <TouchableOpacity
           style={styles.roundButton}
@@ -74,8 +95,10 @@ const DetailsPage = () => {
     });
   }, []);
 
+  // Get the scroll offset for animations
   const scrollOffset = useScrollViewOffset(scrollRef);
 
+  // Define animated styles for the image
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -97,25 +120,30 @@ const DetailsPage = () => {
     };
   });
 
+  // Define animated styles for the header
   const headerAnimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1]),
     };
   }, []);
 
+  // Render the main component
   return (
     <View style={styles.container}>
+      {/* Animated ScrollView for details */}
       <Animated.ScrollView
         contentContainerStyle={{ paddingBottom: 100 }}
         ref={scrollRef}
         scrollEventThrottle={16}
       >
+        {/* Animated Image */}
         <Animated.Image
           source={{ uri: listing.xl_picture_url }}
           style={[styles.image, imageAnimatedStyle]}
           resizeMode="cover"
         />
 
+        {/* Listing Information */}
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{listing.name}</Text>
           <Text style={styles.location}>
@@ -134,6 +162,7 @@ const DetailsPage = () => {
           </View>
           <View style={styles.divider} />
 
+          {/* Host Information */}
           <View style={styles.hostView}>
             <Image
               source={{ uri: listing.host_picture_url }}
@@ -153,10 +182,12 @@ const DetailsPage = () => {
 
           <View style={styles.divider} />
 
+          {/* Description */}
           <Text style={styles.description}>{listing.description}</Text>
         </View>
       </Animated.ScrollView>
 
+      {/* Animated Footer */}
       <Animated.View
         style={{ ...defaultStyles.footer, height: 75 }}
         entering={SlideInDown.delay(200)}
@@ -168,12 +199,14 @@ const DetailsPage = () => {
             alignItems: "center",
           }}
         >
+          {/* Price Information */}
           <TouchableOpacity style={styles.footerText}>
             <Text style={styles.footerPrice}>${listing.price}</Text>
             <Text>/</Text>
             <Text>night</Text>
           </TouchableOpacity>
 
+          {/* Reserve Button */}
           <TouchableOpacity
             style={[defaultStyles.btn, { paddingRight: 20, paddingLeft: 20 }]}
           >
@@ -185,6 +218,7 @@ const DetailsPage = () => {
   );
 };
 
+// Stylesheet for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -268,7 +302,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: Colors.grey,
   },
-
   description: {
     fontSize: 16,
     marginTop: 10,
@@ -276,4 +309,5 @@ const styles = StyleSheet.create({
   },
 });
 
+// Export the component
 export default DetailsPage;

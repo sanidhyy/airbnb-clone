@@ -16,10 +16,12 @@ const ListingsBottomSheet = ({
   listings,
   category,
 }: ListingsBottomSheetProps) => {
+  // Memoize snap points to prevent unnecessary recalculations
   const snapPoints = useMemo(() => ["10%", "100%"], []);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [refresh, setRefresh] = useState<number>(0);
 
+  // Collapse the bottom sheet and trigger a refresh when showing the map
   const onShowMap = () => {
     bottomSheetRef.current?.collapse();
     setRefresh(refresh + 1);
@@ -35,7 +37,9 @@ const ListingsBottomSheet = ({
       style={styles.sheetContainer}
     >
       <View style={styles.contentContainer}>
+        {/* Listings component displaying the list of homes */}
         <Listings listings={listings} refresh={refresh} category={category} />
+        {/* View with "Show Map" button */}
         <View style={styles.absoluteView}>
           <TouchableOpacity onPress={onShowMap} style={styles.btn}>
             <Text style={{ fontFamily: "mon-sb", color: "#fff" }}>Map</Text>

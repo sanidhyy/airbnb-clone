@@ -10,7 +10,9 @@ import Colors from "@/constants/Colors";
 import ModalHeaderText from "@/components/ModalHeaderText";
 import { StatusBar } from "expo-status-bar";
 
+// Clerk public key obtained from environment variables
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
 // Cache the Clerk JWT
 const tokenCache = {
   async getToken(key: string) {
@@ -33,6 +35,7 @@ const tokenCache = {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  // Load fonts
   const [loaded, error] = useFonts({
     mon: require("../assets/fonts/Montserrat-Regular.ttf"),
     "mon-sb": require("../assets/fonts/Montserrat-SemiBold.ttf"),
@@ -45,6 +48,7 @@ export default function RootLayout() {
   }, [error]);
 
   useEffect(() => {
+    // Hide the splash screen when fonts are loaded
     if (loaded) {
       SplashScreen.hideAsync();
     }
@@ -57,10 +61,12 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar style="dark" />
+      {/* Initialize ClerkProvider with the publishable key and token cache */}
       <ClerkProvider
         publishableKey={CLERK_PUBLISHABLE_KEY!}
         tokenCache={tokenCache}
       >
+        {/* Render the root navigation component */}
         <RootLayoutNav />
       </ClerkProvider>
     </>
@@ -71,7 +77,7 @@ function RootLayoutNav() {
   const { isLoaded, isSignedIn } = useAuth();
   const router = useRouter();
 
-  // Automatically open login if user is not authenticated
+  // Automatically open login modal if the user is not authenticated
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       router.push("/(modals)/login");
@@ -80,6 +86,7 @@ function RootLayoutNav() {
 
   return (
     <Stack>
+      {/* Login modal screen */}
       <Stack.Screen
         name="(modals)/login"
         options={{
@@ -95,8 +102,11 @@ function RootLayoutNav() {
           ),
         }}
       />
+      {/* Main tabs screen */}
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* Individual listing screen */}
       <Stack.Screen name="listing/[id]" options={{ headerTitle: "" }} />
+      {/* Bookings modal screen */}
       <Stack.Screen
         name="(modals)/bookings"
         options={{

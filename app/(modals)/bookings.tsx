@@ -1,3 +1,4 @@
+// Importing necessary components and libraries
 import { View, Text, Image } from "react-native";
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
@@ -16,13 +17,16 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import DatePicker from "react-native-modern-datepicker";
 
+// Importing styles and data
 import { defaultStyles } from "@/constants/Styles";
-import { places } from "@/assets/data/places";
 import Colors from "@/constants/Colors";
+import { places } from "@/assets/data/places";
 
+// Creating an Animated version of TouchableOpacity
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
 
+// Define guest groups with initial counts
 const guestsGroups = [
   {
     name: "Adults",
@@ -46,17 +50,23 @@ const guestsGroups = [
   },
 ];
 
+// Main component for handling bookings
 const Bookings = () => {
+  // Hook for navigation
   const router = useRouter();
+
+  // State for managing card visibility, selected place, and guest groups
   const [openCard, setOpenCard] = useState(0);
   const [selectedPlace, setSelectedPlace] = useState(0);
   const [groups, setGroups] = useState(guestsGroups);
 
+  // Get current date and set max date for datepicker
   const today = new Date();
   const todayISO = new Date().toISOString().split("T")[0];
   const maxDate = new Date(today.setMonth(today.getMonth() + 1));
   const maxDateISO = maxDate.toISOString().split("T")[0];
 
+  // Function to clear all selections
   const onClearAll = () => {
     setSelectedPlace(0);
     setOpenCard(0);
@@ -64,10 +74,12 @@ const Bookings = () => {
   };
 
   return (
+    // Main container with blur effect
     <BlurView intensity={70} style={styles.container} tint="light">
-      {/* where */}
+      {/* 'Where' Card */}
       <View style={styles.card}>
         {openCard !== 0 && (
+          // Animated preview for 'Where' card
           <AnimatedTouchableOpacity
             onPress={() => setOpenCard(0)}
             style={styles.cardPreview}
@@ -80,11 +92,13 @@ const Bookings = () => {
         )}
 
         {openCard === 0 && (
+          // 'Where' card content when expanded
           <>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               Where to?
             </Animated.Text>
             <Animated.View style={styles.cardBody}>
+              {/* Search input and list of places */}
               <View style={styles.searchSection}>
                 <Ionicons
                   name="ios-search"
@@ -104,6 +118,7 @@ const Bookings = () => {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ gap: 25 }}
               >
+                {/* Displaying places to select */}
                 {places.map((place, i) => (
                   <TouchableOpacity key={i} onPress={() => setSelectedPlace(i)}>
                     <Image
@@ -130,9 +145,10 @@ const Bookings = () => {
         )}
       </View>
 
-      {/* when */}
+      {/* 'When' Card */}
       <View style={styles.card}>
         {openCard !== 1 && (
+          // Animated preview for 'When' card
           <AnimatedTouchableOpacity
             onPress={() => setOpenCard(1)}
             style={styles.cardPreview}
@@ -145,11 +161,13 @@ const Bookings = () => {
         )}
 
         {openCard === 1 && (
+          // 'When' card content when expanded
           <>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               When's your trip?
             </Animated.Text>
             <Animated.View style={styles.cardBody}>
+              {/* Datepicker for selecting trip dates */}
               <DatePicker
                 current={todayISO}
                 selected={todayISO}
@@ -168,9 +186,10 @@ const Bookings = () => {
         )}
       </View>
 
-      {/* who */}
+      {/* 'Who' Card */}
       <View style={styles.card}>
         {openCard !== 2 && (
+          // Animated preview for 'Who' card
           <AnimatedTouchableOpacity
             onPress={() => setOpenCard(2)}
             style={styles.cardPreview}
@@ -183,11 +202,13 @@ const Bookings = () => {
         )}
 
         {openCard === 2 && (
+          // 'Who' card content when expanded
           <>
             <Animated.Text entering={FadeIn} style={styles.cardHeader}>
               Who's coming?
             </Animated.Text>
             <Animated.View style={styles.cardBody}>
+              {/* Displaying guest groups and allowing quantity adjustments */}
               {groups.map((group, i) => (
                 <View
                   key={i}
@@ -219,6 +240,7 @@ const Bookings = () => {
                       justifyContent: "center",
                     }}
                   >
+                    {/* Buttons to adjust guest quantity */}
                     <TouchableOpacity
                       onPress={() => {
                         const newGroups = [...groups];
@@ -279,6 +301,7 @@ const Bookings = () => {
             alignItems: "center",
           }}
         >
+          {/* Clear all button */}
           <TouchableOpacity
             onPress={onClearAll}
             style={{ justifyContent: "center" }}
@@ -294,6 +317,7 @@ const Bookings = () => {
             </Text>
           </TouchableOpacity>
 
+          {/* Search button */}
           <TouchableOpacity
             onPress={() => router.back()}
             style={{ ...defaultStyles.btn, paddingRight: 20, paddingLeft: 50 }}
@@ -312,6 +336,7 @@ const Bookings = () => {
   );
 };
 
+// Styles for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -330,30 +355,36 @@ const styles = StyleSheet.create({
     },
     gap: 20,
   },
+  // Styles for card preview text
   previewText: {
     fontFamily: "mon-sb",
     fontSize: 14,
     color: Colors.grey,
   },
+  // Styles for card preview date
   previewDate: {
     fontFamily: "mon-sb",
     fontSize: 14,
     color: Colors.dark,
   },
+  // Styles for card preview container
   cardPreview: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 20,
   },
+  // Styles for card header text
   cardHeader: {
     fontFamily: "mon-b",
     fontSize: 24,
     padding: 20,
   },
+  // Styles for card body container
   cardBody: {
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
+  // Styles for search input section
   searchSection: {
     height: 50,
     flexDirection: "row",
@@ -365,14 +396,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 16,
   },
+  // Styles for input field
   inputField: {
     flex: 1,
     padding: 10,
     backgroundColor: "#fff",
   },
+  // Styles for search icon
   searchIcon: {
     padding: 10,
   },
+  // Styles for selected place image
   placeSelected: {
     width: 100,
     height: 100,
@@ -380,21 +414,25 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.grey,
   },
+  // Styles for place image
   place: {
     width: 100,
     height: 100,
     borderRadius: 10,
   },
+  // Styles for guest item container
   guestItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 16,
   },
+  // Styles for item border
   itemBorder: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: Colors.grey,
   },
 });
 
+// Exporting the component
 export default Bookings;

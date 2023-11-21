@@ -23,24 +23,28 @@ interface ListingsProps {
 }
 
 const Listings = ({ listings: items, refresh, category }: ListingsProps) => {
+  // Ref for BottomSheetFlatList
   const listRef = useRef<BottomSheetFlatListMethods>(null);
+  // State to control loading state
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Update the view to scroll the list back top
+  // Update the view to scroll the list back to the top when refresh is triggered
   useEffect(() => {
     if (refresh) {
       scrollListTop();
     }
   }, [refresh]);
 
+  // Scroll the list to the top
   const scrollListTop = () => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   };
 
-  // Use for "updating" the views data after category changed
+  // Use for "updating" the views data after the category changes
   useEffect(() => {
     setLoading(true);
 
+    // Simulate a loading delay
     setTimeout(() => {
       setLoading(false);
     }, 200);
@@ -55,15 +59,18 @@ const Listings = ({ listings: items, refresh, category }: ListingsProps) => {
           entering={FadeInRight}
           exiting={FadeOutLeft}
         >
+          {/* Listing image */}
           <Animated.Image
             source={{ uri: item.medium_url }}
             style={styles.image}
           />
+          {/* Heart icon for liking */}
           <TouchableOpacity
             style={{ position: "absolute", right: 30, top: 30 }}
           >
             <Ionicons name="heart-outline" size={24} color="#000" />
           </TouchableOpacity>
+          {/* Listing information */}
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -89,10 +96,12 @@ const Listings = ({ listings: items, refresh, category }: ListingsProps) => {
 
   return (
     <View style={defaultStyles.container}>
+      {/* BottomSheetFlatList for displaying listings */}
       <BottomSheetFlatList
         renderItem={renderRow}
         data={loading ? [] : items}
         ref={listRef}
+        // Header displaying the number of homes
         ListHeaderComponent={
           <Text style={styles.info}>{items.length} homes</Text>
         }

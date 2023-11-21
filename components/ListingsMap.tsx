@@ -13,6 +13,7 @@ interface ListingsMapProps {
   listings: any;
 }
 
+// Initial region for the map
 const INITIAL_REGION = {
   latitude: 37.33,
   longitude: -122,
@@ -20,6 +21,7 @@ const INITIAL_REGION = {
   longitudeDelta: 9,
 };
 
+// Memoized ListingsMap component
 const ListingsMap = memo(({ listings }: ListingsMapProps) => {
   const router = useRouter();
   const mapRef = useRef<any>(null);
@@ -50,6 +52,7 @@ const ListingsMap = memo(({ listings }: ListingsMapProps) => {
       longitudeDelta: 7,
     };
 
+    // Animate the map to the user's location
     mapRef.current?.animateToRegion(region);
   };
 
@@ -58,6 +61,8 @@ const ListingsMap = memo(({ listings }: ListingsMapProps) => {
     const { id, geometry, onPress, properties } = cluster;
 
     const points = properties.point_count;
+
+    // Custom cluster marker
     return (
       <Marker
         key={`cluster-${id}`}
@@ -84,6 +89,7 @@ const ListingsMap = memo(({ listings }: ListingsMapProps) => {
 
   return (
     <View style={defaultStyles.container}>
+      {/* MapView component with clustering */}
       <MapView
         ref={mapRef}
         animationEnabled={false}
@@ -94,7 +100,7 @@ const ListingsMap = memo(({ listings }: ListingsMapProps) => {
         clusterFontFamily="mon-sb"
         renderCluster={renderCluster}
       >
-        {/* Render all our marker as usual */}
+        {/* Render all individual markers */}
         {listings.features.map((item: any) => (
           <Marker
             coordinate={{
@@ -110,6 +116,7 @@ const ListingsMap = memo(({ listings }: ListingsMapProps) => {
           </Marker>
         ))}
       </MapView>
+      {/* Button to locate user on the map */}
       <TouchableOpacity style={styles.locateBtn} onPress={onLocateMe}>
         <Ionicons name="navigate" size={24} color={Colors.dark} />
       </TouchableOpacity>

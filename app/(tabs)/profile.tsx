@@ -1,3 +1,4 @@
+// Importing necessary dependencies and modules
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -14,17 +15,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 
+// Importing constants and styles
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 
+// Profile component
 const Profile = () => {
+  // Auth and user hooks from Clerk
   const { signOut, isSignedIn } = useAuth();
   const { user } = useUser();
+
+  // State for managing user information and editing mode
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
   const [edit, setEdit] = useState(false);
 
+  // Effect to update local state when user changes
   useEffect(() => {
     if (!user) return;
 
@@ -33,6 +40,7 @@ const Profile = () => {
     setEmail(user.emailAddresses[0].emailAddress);
   }, [user]);
 
+  // Save user information
   const onSaveUser = async () => {
     try {
       if (!firstName || !lastName) return;
@@ -47,6 +55,7 @@ const Profile = () => {
     }
   };
 
+  // Capture and set user profile image
   const onCaptureImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -64,21 +73,27 @@ const Profile = () => {
   };
 
   return (
+    // Main container with SafeAreaView for handling safe area insets
     <SafeAreaView style={defaultStyles.container}>
+      {/* Header section */}
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
         <Ionicons name="notifications-outline" size={26} />
       </View>
 
+      {/* User profile card section */}
       {user && (
         <View style={styles.card}>
+          {/* Avatar with the ability to capture an image */}
           <TouchableOpacity onPress={onCaptureImage}>
             <Image source={{ uri: user?.imageUrl }} style={styles.avatar} />
           </TouchableOpacity>
 
+          {/* User information display or edit mode */}
           <View style={{ flexDirection: "row", gap: 6 }}>
             {edit ? (
               <View style={styles.editRow}>
+                {/* Editable text input fields for first name and last name */}
                 <TextInput
                   placeholder="First name"
                   value={firstName || ""}
@@ -92,6 +107,7 @@ const Profile = () => {
                   onChangeText={setLastName}
                   style={{ ...defaultStyles.inputField, width: 100 }}
                 />
+                {/* Save button for saving changes */}
                 <TouchableOpacity onPress={onSaveUser}>
                   <Ionicons
                     name="checkmark-outline"
@@ -102,6 +118,7 @@ const Profile = () => {
               </View>
             ) : (
               <View style={styles.editRow}>
+                {/* Display user's full name and enter edit mode button */}
                 <Text style={{ fontFamily: "mon", fontSize: 22 }}>
                   {firstName} {lastName}
                 </Text>
@@ -116,6 +133,7 @@ const Profile = () => {
               </View>
             )}
           </View>
+          {/* Display user's email and account creation date */}
           <Text>{email}</Text>
           <Text>
             <Text style={{ fontFamily: "mon-sb" }}>Since:</Text>{" "}
@@ -124,6 +142,7 @@ const Profile = () => {
         </View>
       )}
 
+      {/* Log out or log in button based on authentication status */}
       {isSignedIn && (
         <Button title="Log out" onPress={() => signOut()} color={Colors.dark} />
       )}
@@ -137,6 +156,7 @@ const Profile = () => {
   );
 };
 
+// Styles for the Profile component
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
@@ -182,4 +202,5 @@ const styles = StyleSheet.create({
   },
 });
 
+// Exporting the Profile component
 export default Profile;

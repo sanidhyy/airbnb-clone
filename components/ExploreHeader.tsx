@@ -9,12 +9,14 @@ import {
   StatusBar,
 } from "react-native";
 import { useRef, useState } from "react";
-import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { Link } from "expo-router";
 
+import Colors from "@/constants/Colors";
+
+// Categories data with names and corresponding icons
 const categories = [
   {
     name: "Tiny homes",
@@ -51,19 +53,26 @@ interface Props {
 }
 
 const ExploreHeader = ({ onCategoryChanged }: Props) => {
+  // Ref for ScrollView
   const scrollRef = useRef<ScrollView>(null);
+  // Ref for TouchableOpacity items
   const itemsRef = useRef<Array<TouchableOpacity | null>>([]);
+  // State to keep track of the active category index
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Function to select a category
   const selectCategory = (index: number) => {
     const selected = itemsRef.current[index];
     setActiveIndex(index);
 
+    // Scroll to the selected category
     selected?.measure((x) => {
       scrollRef.current?.scrollTo({ x: x - 16, y: 0, animated: true });
     });
 
+    // Trigger haptic feedback
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    // Notify the parent component about the category change
     onCategoryChanged(categories[index].name);
   };
 
@@ -71,6 +80,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
     <SafeAreaView style={styles.AndroidSafeArea}>
       <View style={styles.container}>
         <View style={styles.actionRow}>
+          {/* Link to navigate to the bookings modal */}
           <Link href="/(modals)/bookings" asChild>
             <TouchableOpacity>
               <View style={styles.searchBtn}>
@@ -84,11 +94,13 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
               </View>
             </TouchableOpacity>
           </Link>
+          {/* Button to open filter options */}
           <TouchableOpacity style={styles.filterBtn}>
             <Ionicons name="options-outline" size={24} />
           </TouchableOpacity>
         </View>
 
+        {/* Horizontal scroll view for categories */}
         <ScrollView
           horizontal
           ref={scrollRef}
@@ -99,6 +111,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
             paddingHorizontal: 16,
           }}
         >
+          {/* Map through categories and render each as a TouchableOpacity */}
           {categories.map((item, index) => (
             <TouchableOpacity
               ref={(el) => (itemsRef.current[index] = el)}
@@ -110,11 +123,13 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
               }
               onPress={() => selectCategory(index)}
             >
+              {/* Icon for the category */}
               <MaterialIcons
                 name={item.icon as any}
                 size={24}
                 color={activeIndex === index ? "#000" : Colors.grey}
               />
+              {/* Text for the category */}
               <Text
                 style={
                   activeIndex === index
@@ -160,7 +175,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingBottom: 20,
   },
-
   searchBtn: {
     backgroundColor: "#fff",
     flexDirection: "row",

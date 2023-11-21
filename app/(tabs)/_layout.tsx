@@ -1,3 +1,4 @@
+// Importing necessary dependencies and modules
 import React from "react";
 import { Tabs } from "expo-router";
 import Colors from "@/constants/Colors";
@@ -7,8 +8,10 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 
+// Main layout component using Tabs from expo-router
 const Layout = () => {
   return (
+    // Configuring common options for all tab screens
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
@@ -17,6 +20,7 @@ const Layout = () => {
         },
       }}
     >
+      {/* Explore tab screen */}
       <Tabs.Screen
         name="index"
         options={{
@@ -27,6 +31,7 @@ const Layout = () => {
         }}
       />
 
+      {/* Wishlist tab screen */}
       <Tabs.Screen
         name="wishlist"
         options={{
@@ -37,6 +42,7 @@ const Layout = () => {
         }}
       />
 
+      {/* Trips tab screen */}
       <Tabs.Screen
         name="trips"
         options={{
@@ -47,6 +53,7 @@ const Layout = () => {
         }}
       />
 
+      {/* Inbox tab screen */}
       <Tabs.Screen
         name="inbox"
         options={{
@@ -61,6 +68,7 @@ const Layout = () => {
         }}
       />
 
+      {/* Profile tab screen */}
       <Tabs.Screen
         name="profile"
         options={{
@@ -75,4 +83,5 @@ const Layout = () => {
   );
 };
 
+// Exporting the component
 export default Layout;
