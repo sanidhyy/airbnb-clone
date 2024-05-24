@@ -91,7 +91,7 @@ EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ![Copy Clerk Publishable Key](/.github/images/step_clerk.png "Copy Clerk Publishable Key")
 
-8. Now app is fully configured :+1: and you can start using this app using `npm run dev` or `yarn run dev`. The app is created using vite.
+8. Now app is fully configured :+1: and you can start using this app using `npm run dev` or `yarn run dev`.
 
 ### :books: Additional Resources
 
