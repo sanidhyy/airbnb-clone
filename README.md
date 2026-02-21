@@ -41,6 +41,8 @@
 
 Here is the folder structure of Airbnb Clone.
 
+<!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 airbnb-clone/
   |- app/
@@ -67,6 +69,8 @@ airbnb-clone/
   |- package.json
   |- tsconfig.json
 ```
+
+<!--- FOLDER_STRUCTURE_END --->
 
 <br />
 
@@ -125,6 +129,8 @@ You might encounter some bugs while using this app. You are more than welcome to
 
 Useful resources and libraries that are used in My Portfolio
 
+<!--- DEPENDENCIES_START --->
+
 - [Bottom Sheet](https://gorhom.github.io/react-native-bottom-sheet/ "Bottom Sheet")
 - [React Native Modern Date Picker](https://hosseinshabani.github.io/react-native-modern-datepicker/ "React Native Modern Date Picker")
 - [Expo Blur](https://docs.expo.dev/versions/latest/sdk/blur-view "Expo Blur")
@@ -133,6 +139,7 @@ Useful resources and libraries that are used in My Portfolio
 - [React Native Maps](https://docs.expo.dev/versions/latest/sdk/map-view "React Native Maps")
 - [Prettier](https://prettier.io "Prettier")
 - [ESLint](https://eslint.org "ESLint")
+<!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
 
