@@ -42,7 +42,6 @@
 Here is the folder structure of Airbnb Clone.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 airbnb-clone/
   |- app/
@@ -55,21 +54,26 @@ airbnb-clone/
     |-- fonts/
     |-- images/
   |- components/
+    |-- ExploreHeader.tsx
+    |-- Listings.tsx
+    |-- ListingsBottomSheet.tsx
+    |-- ListingsMap.tsx
+    |-- ModalHeaderText.tsx
   |- constants/
     |-- Colors.ts
     |-- Styles.ts
   |- hooks/
     |-- useWarmUpBrowser.ts
-  |- .env
   |- .env.example
+  |- .env/.env.local
+  |- .gitignore
   |- app.json
-  |- babel.config.json
-  |- metro-config.json
+  |- babel.config.js
+  |- metro.config.js
   |- package-lock.json
   |- package.json
   |- tsconfig.json
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -130,15 +134,43 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and libraries that are used in My Portfolio
 
 <!--- DEPENDENCIES_START --->
+- [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.20.0
+- [@clerk/clerk-expo](https://www.npmjs.com/package/@clerk/clerk-expo): ^0.19.17
+- [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons): ^13.0.0
+- [@gorhom/bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet): ^4.5.1
+- [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native): ^6.0.2
+- [@types/react](https://www.npmjs.com/package/@types/react): ~18.2.14
+- [@types/react-native](https://www.npmjs.com/package/@types/react-native): ^0.72.6
+- [@types/react-native-modern-datepicker](https://www.npmjs.com/package/@types/react-native-modern-datepicker): ^1.0.4
+- [expo](https://www.npmjs.com/package/expo): ~54.0.31
+- [expo-blur](https://www.npmjs.com/package/expo-blur): ~12.4.1
+- [expo-font](https://www.npmjs.com/package/expo-font): ~11.4.0
+- [expo-haptics](https://www.npmjs.com/package/expo-haptics): ^12.6.0
+- [expo-image-picker](https://www.npmjs.com/package/expo-image-picker): ~14.3.2
+- [expo-linking](https://www.npmjs.com/package/expo-linking): ~5.0.2
+- [expo-location](https://www.npmjs.com/package/expo-location): ~16.1.0
+- [expo-router](https://www.npmjs.com/package/expo-router): ^6.0.21
+- [expo-secure-store](https://www.npmjs.com/package/expo-secure-store): ~12.3.1
+- [expo-splash-screen](https://www.npmjs.com/package/expo-splash-screen): ~0.20.5
+- [expo-status-bar](https://www.npmjs.com/package/expo-status-bar): ~1.6.0
+- [expo-system-ui](https://www.npmjs.com/package/expo-system-ui): ~2.4.0
+- [expo-web-browser](https://www.npmjs.com/package/expo-web-browser): ~12.3.2
+- [jest](https://www.npmjs.com/package/jest): ^29.2.1
+- [jest-expo](https://www.npmjs.com/package/jest-expo): ~49.0.0
+- [react](https://www.npmjs.com/package/react): 18.2.0
+- [react-dom](https://www.npmjs.com/package/react-dom): 18.2.0
+- [react-native](https://www.npmjs.com/package/react-native): 0.82.1
+- [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler): ~2.12.0
+- [react-native-map-clustering](https://www.npmjs.com/package/react-native-map-clustering): ^3.4.2
+- [react-native-maps](https://www.npmjs.com/package/react-native-maps): 1.7.1
+- [react-native-modern-datepicker](https://www.npmjs.com/package/react-native-modern-datepicker): ^1.0.0-beta.91
+- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated): ~3.3.0
+- [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context): 4.6.3
+- [react-native-screens](https://www.npmjs.com/package/react-native-screens): ~3.22.0
+- [react-native-web](https://www.npmjs.com/package/react-native-web): ~0.19.6
+- [react-test-renderer](https://www.npmjs.com/package/react-test-renderer): 18.2.0
+- [typescript](https://www.npmjs.com/package/typescript): ^5.1.3
 
-- [Bottom Sheet](https://gorhom.github.io/react-native-bottom-sheet/ "Bottom Sheet")
-- [React Native Modern Date Picker](https://hosseinshabani.github.io/react-native-modern-datepicker/ "React Native Modern Date Picker")
-- [Expo Blur](https://docs.expo.dev/versions/latest/sdk/blur-view "Expo Blur")
-- [Expo Location](https://docs.expo.dev/versions/latest/sdk/location "Expo Location")
-- [Reanimated](https://docs.expo.dev/versions/latest/sdk/reanimated "Reanimated")
-- [React Native Maps](https://docs.expo.dev/versions/latest/sdk/map-view "React Native Maps")
-- [Prettier](https://prettier.io "Prettier")
-- [ESLint](https://eslint.org "ESLint")
 <!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
