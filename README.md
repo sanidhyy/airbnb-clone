@@ -50,9 +50,6 @@ airbnb-clone/
     |-- listing/
     |-- _layout.tsx
   |- assets/
-    |-- data/
-    |-- fonts/
-    |-- images/
   |- components/
     |-- ExploreHeader.tsx
     |-- Listings.tsx
