@@ -139,7 +139,7 @@ Useful resources and libraries that are used in My Portfolio
 - [@types/react](https://www.npmjs.com/package/@types/react): ~18.2.14
 - [@types/react-native](https://www.npmjs.com/package/@types/react-native): ^0.72.6
 - [@types/react-native-modern-datepicker](https://www.npmjs.com/package/@types/react-native-modern-datepicker): ^1.0.4
-- [expo](https://www.npmjs.com/package/expo): ~54.0.31
+- [expo](https://www.npmjs.com/package/expo): ~57.0.8
 - [expo-blur](https://www.npmjs.com/package/expo-blur): ~12.4.1
 - [expo-font](https://www.npmjs.com/package/expo-font): ~11.4.0
 - [expo-haptics](https://www.npmjs.com/package/expo-haptics): ^12.6.0
