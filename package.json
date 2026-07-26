@@ -13,7 +13,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@clerk/clerk-expo": "^0.19.17",
+    "@clerk/clerk-expo": "^2.19.31",
     "@expo/vector-icons": "^13.0.0",
     "@gorhom/bottom-sheet": "^4.5.1",
     "@react-navigation/native": "^6.0.2",
