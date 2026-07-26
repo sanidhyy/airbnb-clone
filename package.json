@@ -18,7 +18,7 @@
     "@gorhom/bottom-sheet": "^4.5.1",
     "@react-navigation/native": "^6.0.2",
     "@types/react-native-modern-datepicker": "^1.0.4",
-    "expo": "~54.0.31",
+    "expo": "~57.0.8",
     "expo-blur": "~12.4.1",
     "expo-font": "~11.4.0",
     "expo-haptics": "^12.6.0",
