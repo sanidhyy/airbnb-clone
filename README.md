@@ -131,8 +131,8 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and libraries that are used in My Portfolio
 
 <!--- DEPENDENCIES_START --->
-- [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.20.0
-- [@clerk/clerk-expo](https://www.npmjs.com/package/@clerk/clerk-expo): ^0.19.17
+- [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.29.6
+- [@clerk/clerk-expo](https://www.npmjs.com/package/@clerk/clerk-expo): ^2.19.31
 - [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons): ^13.0.0
 - [@gorhom/bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet): ^4.5.1
 - [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native): ^6.0.2
