@@ -158,7 +158,7 @@ Useful resources and libraries that are used in My Portfolio
 - [expo-secure-store](https://www.npmjs.com/package/expo-secure-store): ~12.3.1
 - [expo-splash-screen](https://www.npmjs.com/package/expo-splash-screen): ~57.0.8
 - [expo-status-bar](https://www.npmjs.com/package/expo-status-bar): ~58.0.5
-- [expo-system-ui](https://www.npmjs.com/package/expo-system-ui): ~2.4.0
+- [expo-system-ui](https://www.npmjs.com/package/expo-system-ui): ~58.0.7
 - [expo-web-browser](https://www.npmjs.com/package/expo-web-browser): ~12.3.2
 - [jest](https://www.npmjs.com/package/jest): ^29.2.1
 - [jest-expo](https://www.npmjs.com/package/jest-expo): ~57.0.5
