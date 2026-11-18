@@ -143,7 +143,7 @@ Useful resources and libraries that are used in My Portfolio
 - [@clerk/clerk-expo](https://www.npmjs.com/package/@clerk/clerk-expo): ^2.19.31
 - [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons): ^13.0.0
 - [@gorhom/bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet): ^4.5.1
-- [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native): ^6.0.2
+- [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native): ^7.5.1
 - [@types/react](https://www.npmjs.com/package/@types/react): ~18.2.14
 - [@types/react-native](https://www.npmjs.com/package/@types/react-native): ^0.72.6
 - [@types/react-native-modern-datepicker](https://www.npmjs.com/package/@types/react-native-modern-datepicker): ^1.0.4
@@ -157,7 +157,7 @@ Useful resources and libraries that are used in My Portfolio
 - [expo-router](https://www.npmjs.com/package/expo-router): ^6.0.21
 - [expo-secure-store](https://www.npmjs.com/package/expo-secure-store): ~12.3.1
 - [expo-splash-screen](https://www.npmjs.com/package/expo-splash-screen): ~57.0.8
-- [expo-status-bar](https://www.npmjs.com/package/expo-status-bar): ~1.6.0
+- [expo-status-bar](https://www.npmjs.com/package/expo-status-bar): ~58.0.5
 - [expo-system-ui](https://www.npmjs.com/package/expo-system-ui): ~2.4.0
 - [expo-web-browser](https://www.npmjs.com/package/expo-web-browser): ~12.3.2
 - [jest](https://www.npmjs.com/package/jest): ^29.2.1
@@ -169,11 +169,11 @@ Useful resources and libraries that are used in My Portfolio
 - [react-native-map-clustering](https://www.npmjs.com/package/react-native-map-clustering): ^3.4.2
 - [react-native-maps](https://www.npmjs.com/package/react-native-maps): 1.7.1
 - [react-native-modern-datepicker](https://www.npmjs.com/package/react-native-modern-datepicker): ^1.0.0-beta.91
-- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated): ~3.3.0
+- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated): ~4.7.1
 - [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context): 4.6.3
 - [react-native-screens](https://www.npmjs.com/package/react-native-screens): ~3.22.0
 - [react-native-web](https://www.npmjs.com/package/react-native-web): ~0.19.6
-- [react-test-renderer](https://www.npmjs.com/package/react-test-renderer): 18.2.0
+- [react-test-renderer](https://www.npmjs.com/package/react-test-renderer): 19.3.1
 - [typescript](https://www.npmjs.com/package/typescript): ^5.1.3
 
 <!--- DEPENDENCIES_END --->
