@@ -42,7 +42,6 @@
 Here is the folder structure of Airbnb Clone.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 airbnb-clone/
   |- app/
@@ -68,12 +67,11 @@ airbnb-clone/
   |- app.json
   |- babel.config.js
   |- metro.config.js
+  |- package.json
   |- pnpm-lock.yaml
   |- pnpm-workspace.yaml
-  |- package.json
   |- tsconfig.json
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -140,7 +138,6 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and libraries that are used in My Portfolio
 
 <!--- DEPENDENCIES_START --->
-
 - [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.29.13
 - [@clerk/expo](https://www.npmjs.com/package/@clerk/expo): ^4.17.2
 - [@expo/metro-runtime](https://www.npmjs.com/package/@expo/metro-runtime): ~58.0.17
@@ -148,6 +145,8 @@ Useful resources and libraries that are used in My Portfolio
 - [@gorhom/bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet): ^5.2.14
 - [@react-native/jest-preset](https://www.npmjs.com/package/@react-native/jest-preset): 0.88.1
 - [@react-native/metro-config](https://www.npmjs.com/package/@react-native/metro-config): 0.88.1
+- [@types/leaflet](https://www.npmjs.com/package/@types/leaflet): ^1.9.22
+- [@types/leaflet.markercluster](https://www.npmjs.com/package/@types/leaflet.markercluster): ^1.5.6
 - [@types/react](https://www.npmjs.com/package/@types/react): ^19.3.0
 - [babel-preset-expo](https://www.npmjs.com/package/babel-preset-expo): ^58.0.26
 - [expo](https://www.npmjs.com/package/expo): ~58.0.26
@@ -169,6 +168,8 @@ Useful resources and libraries that are used in My Portfolio
 - [expo-web-browser](https://www.npmjs.com/package/expo-web-browser): ~58.1.0
 - [jest](https://www.npmjs.com/package/jest): ^30.5.2
 - [jest-expo](https://www.npmjs.com/package/jest-expo): ~58.0.15
+- [leaflet](https://www.npmjs.com/package/leaflet): ^1.9.4
+- [leaflet.markercluster](https://www.npmjs.com/package/leaflet.markercluster): ^1.5.3
 - [react](https://www.npmjs.com/package/react): 19.3.0
 - [react-dom](https://www.npmjs.com/package/react-dom): 19.3.0
 - [react-native](https://www.npmjs.com/package/react-native): 0.88.1
