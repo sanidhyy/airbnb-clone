@@ -42,6 +42,7 @@
 Here is the folder structure of Airbnb Clone.
 
 <!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 airbnb-clone/
   |- app/
@@ -71,6 +72,7 @@ airbnb-clone/
   |- package.json
   |- tsconfig.json
 ```
+
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -87,16 +89,16 @@ airbnb-clone/
 EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-5. Open terminal in root directory. Run `npm install` or `yarn install`.
+5. Open terminal in root directory. Run `npm install` or `pnpm install`.
 
-6. Install Expo Cli using `npm i -g expo-cli` or `yarn global add expo-cli` to initialize your app on Expo.
+6. Install Expo Cli using `npm i -g expo-cli` or `pnpm add -g expo-cli` to initialize your app on Expo.
 
 7. **Clerk Key**:
    - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` is provided by Clerk. You need to sign up for an account on Clerk (https://www.clerk.dev/), log in, and access thiskey in your account settings. Make sure you select Expo app before copying this key.
 
 ![Copy Clerk Publishable Key](/.github/images/step_clerk.png "Copy Clerk Publishable Key")
 
-8. Now app is fully configured :+1: and you can start using this app using `npm run dev` or `yarn run dev`.
+8. Now app is fully configured :+1: and you can start using this app using `npm run dev` or `pnpm run dev`.
 
 ### :books: Additional Resources
 
@@ -139,6 +141,7 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and libraries that are used in My Portfolio
 
 <!--- DEPENDENCIES_START --->
+
 - [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.29.6
 - [@clerk/clerk-expo](https://www.npmjs.com/package/@clerk/clerk-expo): ^2.19.31
 - [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons): ^13.0.0

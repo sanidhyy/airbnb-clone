@@ -1,0 +1,6 @@
+allowBuilds:
+  '@clerk/shared': false
+  browser-tabs-lock: false
+  bufferutil: false
+  core-js: false
+  utf-8-validate: false
