@@ -9,13 +9,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useOAuth } from "@clerk/clerk-expo";
+import { useSSO } from "@clerk/expo";
+import * as AuthSession from "expo-auth-session";
+import * as WebBrowser from "expo-web-browser";
 
 // Custom hook for warming up the browser
 import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
 // Importing styles and colors
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
+
+WebBrowser.maybeCompleteAuthSession();
 
 // Enum for different OAuth strategies
 enum Strategy {
@@ -33,32 +37,21 @@ const Login = () => {
   // Hook for navigation
   const router = useRouter();
 
-  // OAuth hooks for different strategies
-  const { startOAuthFlow: appleAuth } = useOAuth({ strategy: "oauth_apple" });
-  const { startOAuthFlow: googleAuth } = useOAuth({ strategy: "oauth_google" });
-  const { startOAuthFlow: githubAuth } = useOAuth({ strategy: "oauth_github" });
-  const { startOAuthFlow: facebookAuth } = useOAuth({
-    strategy: "oauth_facebook",
-  });
+  const { startSSOFlow } = useSSO();
 
   // Function to handle OAuth flow based on selected strategy
   const onSelectAuth = async (strategy: Strategy) => {
-    // Map the selected strategy to the corresponding OAuth hook
-    const selectedAuth = {
-      [Strategy.Google]: googleAuth,
-      [Strategy.Apple]: appleAuth,
-      [Strategy.Facebook]: facebookAuth,
-      [Strategy.Github]: githubAuth,
-    }[strategy];
-
     try {
       // Start OAuth flow and get session information
-      const { createdSessionId, setActive } = await selectedAuth();
+      const { createdSessionId, setActive } = await startSSOFlow({
+        strategy,
+        redirectUrl: AuthSession.makeRedirectUri(),
+      });
 
       // If a session is created, set it as active and navigate to the main page
-      if (createdSessionId) {
-        setActive!({ session: createdSessionId });
-        router.push("/(tabs)/");
+      if (createdSessionId && setActive) {
+        await setActive({ session: createdSessionId });
+        router.replace("/(tabs)/");
       }
     } catch (error: unknown) {
       // Log any errors that occur during the OAuth flow
@@ -108,7 +101,7 @@ const Login = () => {
           onPress={() => onSelectAuth(Strategy.Apple)}
         >
           <Ionicons
-            name="md-logo-apple"
+            name="logo-apple"
             size={24}
             style={defaultStyles.btnIcon}
           />
@@ -121,7 +114,7 @@ const Login = () => {
           onPress={() => onSelectAuth(Strategy.Google)}
         >
           <Ionicons
-            name="md-logo-google"
+            name="logo-google"
             size={24}
             style={defaultStyles.btnIcon}
           />
@@ -134,7 +127,7 @@ const Login = () => {
           onPress={() => onSelectAuth(Strategy.Github)}
         >
           <Ionicons
-            name="md-logo-github"
+            name="logo-github"
             size={24}
             style={defaultStyles.btnIcon}
           />
@@ -147,7 +140,7 @@ const Login = () => {
           onPress={() => onSelectAuth(Strategy.Facebook)}
         >
           <Ionicons
-            name="md-logo-facebook"
+            name="logo-facebook"
             size={24}
             style={defaultStyles.btnIcon}
           />

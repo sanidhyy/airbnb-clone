@@ -1,10 +1,12 @@
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
-import * as SecureStore from "expo-secure-store";
+import { ClerkProvider, useAuth } from "@clerk/expo";
+import { tokenCache } from "@clerk/expo/token-cache";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import Colors from "@/constants/Colors";
 import ModalHeaderText from "@/components/ModalHeaderText";
@@ -12,24 +14,6 @@ import { StatusBar } from "expo-status-bar";
 
 // Clerk public key obtained from environment variables
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-// Cache the Clerk JWT
-const tokenCache = {
-  async getToken(key: string) {
-    try {
-      return SecureStore.getItemAsync(key);
-    } catch (err) {
-      return null;
-    }
-  },
-  async saveToken(key: string, value: string) {
-    try {
-      return SecureStore.setItemAsync(key, value);
-    } catch (err) {
-      return;
-    }
-  },
-};
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -59,7 +43,7 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="dark" />
       {/* Initialize ClerkProvider with the publishable key and token cache */}
       <ClerkProvider
@@ -69,7 +53,7 @@ export default function RootLayout() {
         {/* Render the root navigation component */}
         <RootLayoutNav />
       </ClerkProvider>
-    </>
+    </GestureHandlerRootView>
   );
 }
 

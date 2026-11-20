@@ -15,7 +15,7 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import DatePicker from "react-native-modern-datepicker";
+import { Calendar } from "react-native-calendars";
 
 // Importing styles and data
 import { defaultStyles } from "@/constants/Styles";
@@ -65,12 +65,14 @@ const Bookings = () => {
   const todayISO = new Date().toISOString().split("T")[0];
   const maxDate = new Date(today.setMonth(today.getMonth() + 1));
   const maxDateISO = maxDate.toISOString().split("T")[0];
+  const [selectedDate, setSelectedDate] = useState(todayISO);
 
   // Function to clear all selections
   const onClearAll = () => {
     setSelectedPlace(0);
     setOpenCard(0);
     setGroups(guestsGroups);
+    setSelectedDate(todayISO);
   };
 
   return (
@@ -101,7 +103,7 @@ const Bookings = () => {
               {/* Search input and list of places */}
               <View style={styles.searchSection}>
                 <Ionicons
-                  name="ios-search"
+                  name="search"
                   size={20}
                   color="black"
                   style={styles.searchIcon}
@@ -168,17 +170,20 @@ const Bookings = () => {
             </Animated.Text>
             <Animated.View style={styles.cardBody}>
               {/* Datepicker for selecting trip dates */}
-              <DatePicker
-                current={todayISO}
-                selected={todayISO}
-                minimumDate={todayISO}
-                maximumDate={maxDateISO}
-                mode="calendar"
-                options={{
-                  defaultFont: "mon",
-                  headerFont: "mon-sb",
-                  borderColor: "transparent",
-                  mainColor: Colors.primary,
+              <Calendar
+                initialDate={selectedDate}
+                minDate={todayISO}
+                maxDate={maxDateISO}
+                onDayPress={({ dateString }) => setSelectedDate(dateString)}
+                markedDates={{ [selectedDate]: { selected: true } }}
+                disableAllTouchEventsForDisabledDays
+                theme={{
+                  textDayFontFamily: "mon",
+                  textMonthFontFamily: "mon-sb",
+                  textDayHeaderFontFamily: "mon",
+                  selectedDayBackgroundColor: Colors.primary,
+                  todayTextColor: Colors.primary,
+                  arrowColor: Colors.primary,
                 }}
               />
             </Animated.View>

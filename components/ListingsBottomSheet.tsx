@@ -32,6 +32,7 @@ const ListingsBottomSheet = ({
       ref={bottomSheetRef}
       index={1}
       snapPoints={snapPoints}
+      enableDynamicSizing={false}
       enablePanDownToClose={false}
       handleIndicatorStyle={{ backgroundColor: Colors.grey }}
       style={styles.sheetContainer}

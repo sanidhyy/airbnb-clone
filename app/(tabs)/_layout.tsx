@@ -26,7 +26,7 @@ const Layout = () => {
         options={{
           tabBarLabel: "Explore",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" color={color} size={size} />
+            <Ionicons name="search" color={typeof color === "string" ? color : Colors.grey} size={size} />
           ),
         }}
       />
@@ -37,7 +37,7 @@ const Layout = () => {
         options={{
           tabBarLabel: "Wishlist",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="heart-outline" color={color} size={size} />
+            <Ionicons name="heart-outline" color={typeof color === "string" ? color : Colors.grey} size={size} />
           ),
         }}
       />
@@ -48,7 +48,7 @@ const Layout = () => {
         options={{
           tabBarLabel: "Trips",
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="airbnb" color={color} size={size} />
+            <FontAwesome5 name="airbnb" color={typeof color === "string" ? color : Colors.grey} size={size} />
           ),
         }}
       />
@@ -61,7 +61,7 @@ const Layout = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="message-outline"
-              color={color}
+              color={typeof color === "string" ? color : Colors.grey}
               size={size}
             />
           ),
@@ -75,7 +75,7 @@ const Layout = () => {
           tabBarLabel: "Profile",
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" color={color} size={size} />
+            <Ionicons name="person-circle-outline" color={typeof color === "string" ? color : Colors.grey} size={size} />
           ),
         }}
       />

@@ -1,5 +1,6 @@
 allowBuilds:
-  '@clerk/shared': false
+  "@clerk/shared": false
+  "@parcel/watcher": false
   browser-tabs-lock: false
   bufferutil: false
   core-js: false

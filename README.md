@@ -68,7 +68,8 @@ airbnb-clone/
   |- app.json
   |- babel.config.js
   |- metro.config.js
-  |- package-lock.json
+  |- pnpm-lock.yaml
+  |- pnpm-workspace.yaml
   |- package.json
   |- tsconfig.json
 ```
@@ -89,16 +90,14 @@ airbnb-clone/
 EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-5. Open terminal in root directory. Run `npm install` or `pnpm install`.
+5. Open a terminal in the root directory and run `npm install` or `pnpm install`.
 
-6. Install Expo Cli using `npm i -g expo-cli` or `pnpm add -g expo-cli` to initialize your app on Expo.
-
-7. **Clerk Key**:
-   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` is provided by Clerk. You need to sign up for an account on Clerk (https://www.clerk.dev/), log in, and access thiskey in your account settings. Make sure you select Expo app before copying this key.
+6. **Clerk Key**:
+   - `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` is provided by Clerk. You need to sign up for an account on Clerk (https://www.clerk.dev/), log in, create new project and access this key in your project settings.
 
 ![Copy Clerk Publishable Key](/.github/images/step_clerk.png "Copy Clerk Publishable Key")
 
-8. Now app is fully configured :+1: and you can start using this app using `npm run dev` or `pnpm run dev`.
+7. Now app is fully configured :+1: and you can start using this app using `npm start` or `pnpm start`.
 
 ### :books: Additional Resources
 
@@ -142,42 +141,48 @@ Useful resources and libraries that are used in My Portfolio
 
 <!--- DEPENDENCIES_START --->
 
-- [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.29.6
-- [@clerk/clerk-expo](https://www.npmjs.com/package/@clerk/clerk-expo): ^2.19.31
-- [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons): ^13.0.0
-- [@gorhom/bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet): ^4.5.1
-- [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native): ^7.5.1
-- [@types/react](https://www.npmjs.com/package/@types/react): ~18.2.14
-- [@types/react-native](https://www.npmjs.com/package/@types/react-native): ^0.72.6
-- [@types/react-native-modern-datepicker](https://www.npmjs.com/package/@types/react-native-modern-datepicker): ^1.0.4
-- [expo](https://www.npmjs.com/package/expo): ~57.0.8
-- [expo-blur](https://www.npmjs.com/package/expo-blur): ~12.4.1
-- [expo-font](https://www.npmjs.com/package/expo-font): ~11.4.0
-- [expo-haptics](https://www.npmjs.com/package/expo-haptics): ^12.6.0
-- [expo-image-picker](https://www.npmjs.com/package/expo-image-picker): ~14.3.2
-- [expo-linking](https://www.npmjs.com/package/expo-linking): ~57.0.9
-- [expo-location](https://www.npmjs.com/package/expo-location): ~16.1.0
-- [expo-router](https://www.npmjs.com/package/expo-router): ^6.0.21
-- [expo-secure-store](https://www.npmjs.com/package/expo-secure-store): ~12.3.1
-- [expo-splash-screen](https://www.npmjs.com/package/expo-splash-screen): ~57.0.8
+- [@babel/core](https://www.npmjs.com/package/@babel/core): ^7.29.13
+- [@clerk/expo](https://www.npmjs.com/package/@clerk/expo): ^4.17.2
+- [@expo/metro-runtime](https://www.npmjs.com/package/@expo/metro-runtime): ~58.0.17
+- [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons): ^15.0.2
+- [@gorhom/bottom-sheet](https://www.npmjs.com/package/@gorhom/bottom-sheet): ^5.2.14
+- [@react-native/jest-preset](https://www.npmjs.com/package/@react-native/jest-preset): 0.88.1
+- [@react-native/metro-config](https://www.npmjs.com/package/@react-native/metro-config): 0.88.1
+- [@types/react](https://www.npmjs.com/package/@types/react): ^19.3.0
+- [babel-preset-expo](https://www.npmjs.com/package/babel-preset-expo): ^58.0.26
+- [expo](https://www.npmjs.com/package/expo): ~58.0.26
+- [expo-application](https://www.npmjs.com/package/expo-application): ~58.1.2
+- [expo-auth-session](https://www.npmjs.com/package/expo-auth-session): ~58.0.19
+- [expo-blur](https://www.npmjs.com/package/expo-blur): ~58.0.6
+- [expo-constants](https://www.npmjs.com/package/expo-constants): ~58.0.16
+- [expo-crypto](https://www.npmjs.com/package/expo-crypto): ~58.0.8
+- [expo-font](https://www.npmjs.com/package/expo-font): ~58.0.12
+- [expo-haptics](https://www.npmjs.com/package/expo-haptics): ~58.0.8
+- [expo-image-picker](https://www.npmjs.com/package/expo-image-picker): ~58.0.10
+- [expo-linking](https://www.npmjs.com/package/expo-linking): ~58.0.17
+- [expo-location](https://www.npmjs.com/package/expo-location): ~58.0.22
+- [expo-router](https://www.npmjs.com/package/expo-router): ~58.0.32
+- [expo-secure-store](https://www.npmjs.com/package/expo-secure-store): ~58.0.3
+- [expo-splash-screen](https://www.npmjs.com/package/expo-splash-screen): ~58.0.14
 - [expo-status-bar](https://www.npmjs.com/package/expo-status-bar): ~58.0.5
 - [expo-system-ui](https://www.npmjs.com/package/expo-system-ui): ~58.0.7
-- [expo-web-browser](https://www.npmjs.com/package/expo-web-browser): ~12.3.2
-- [jest](https://www.npmjs.com/package/jest): ^29.2.1
-- [jest-expo](https://www.npmjs.com/package/jest-expo): ~57.0.5
-- [react](https://www.npmjs.com/package/react): 18.2.0
-- [react-dom](https://www.npmjs.com/package/react-dom): 18.2.0
-- [react-native](https://www.npmjs.com/package/react-native): 0.82.1
-- [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler): ~2.12.0
-- [react-native-map-clustering](https://www.npmjs.com/package/react-native-map-clustering): ^3.4.2
-- [react-native-maps](https://www.npmjs.com/package/react-native-maps): 1.7.1
-- [react-native-modern-datepicker](https://www.npmjs.com/package/react-native-modern-datepicker): ^1.0.0-beta.91
-- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated): ~4.7.1
-- [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context): 4.6.3
-- [react-native-screens](https://www.npmjs.com/package/react-native-screens): ~3.22.0
-- [react-native-web](https://www.npmjs.com/package/react-native-web): ~0.19.6
-- [react-test-renderer](https://www.npmjs.com/package/react-test-renderer): 19.3.1
-- [typescript](https://www.npmjs.com/package/typescript): ^5.1.3
+- [expo-web-browser](https://www.npmjs.com/package/expo-web-browser): ~58.1.0
+- [jest](https://www.npmjs.com/package/jest): ^30.5.2
+- [jest-expo](https://www.npmjs.com/package/jest-expo): ~58.0.15
+- [react](https://www.npmjs.com/package/react): 19.3.0
+- [react-dom](https://www.npmjs.com/package/react-dom): 19.3.0
+- [react-native](https://www.npmjs.com/package/react-native): 0.88.1
+- [react-native-calendars](https://www.npmjs.com/package/react-native-calendars): ^1.1314.0
+- [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler): ~3.3.0
+- [react-native-map-clustering](https://www.npmjs.com/package/react-native-map-clustering): ^4.0.0
+- [react-native-maps](https://www.npmjs.com/package/react-native-maps): 1.29.11
+- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated): 4.7.1
+- [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context): ~5.11.1
+- [react-native-screens](https://www.npmjs.com/package/react-native-screens): ~4.30.1
+- [react-native-web](https://www.npmjs.com/package/react-native-web): ~0.21.4
+- [react-native-worklets](https://www.npmjs.com/package/react-native-worklets): 0.13.0
+- [react-test-renderer](https://www.npmjs.com/package/react-test-renderer): 19.3.0
+- [typescript](https://www.npmjs.com/package/typescript): ~6.0.3
 
 <!--- DEPENDENCIES_END --->
 

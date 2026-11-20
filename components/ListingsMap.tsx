@@ -93,7 +93,7 @@ const ListingsMap = memo(({ listings }: ListingsMapProps) => {
       <MapView
         ref={mapRef}
         animationEnabled={false}
-        style={StyleSheet.absoluteFillObject}
+        style={StyleSheet.absoluteFill}
         initialRegion={INITIAL_REGION}
         clusterColor="#fff"
         clusterTextColor="#000"

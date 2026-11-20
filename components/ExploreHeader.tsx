@@ -4,11 +4,12 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  type ScrollViewInstance,
   TouchableOpacity,
   Platform,
   StatusBar,
 } from "react-native";
-import { useRef, useState } from "react";
+import { useRef, useState, type ComponentRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -54,9 +55,9 @@ interface Props {
 
 const ExploreHeader = ({ onCategoryChanged }: Props) => {
   // Ref for ScrollView
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   // Ref for TouchableOpacity items
-  const itemsRef = useRef<Array<TouchableOpacity | null>>([]);
+  const itemsRef = useRef<Array<ComponentRef<typeof TouchableOpacity> | null>>([]);
   // State to keep track of the active category index
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -114,7 +115,9 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
           {/* Map through categories and render each as a TouchableOpacity */}
           {categories.map((item, index) => (
             <TouchableOpacity
-              ref={(el) => (itemsRef.current[index] = el)}
+              ref={(el) => {
+                itemsRef.current[index] = el;
+              }}
               key={index}
               style={
                 activeIndex === index
